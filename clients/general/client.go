@@ -23,8 +23,8 @@ import (
 )
 
 type GeneralClient interface {
-	FetchConfiguration(ctx context.Context) (string, error)
-	FetchMetrics(ctx context.Context) (string, error)
+	FetchConfiguration(ctx context.Context, url string) (string, error)
+	FetchMetrics(ctx context.Context, url string) (string, error)
 }
 
 type generalRestClient struct {
@@ -56,13 +56,15 @@ func (gc *generalRestClient) init(params types.EndpointParams) {
 }
 
 // FetchConfiguration fetch configuration information from the service.
-func (gc *generalRestClient) FetchConfiguration(ctx context.Context) (string, error) {
-	body, err := clients.GetRequest(gc.url+clients.ApiConfigRoute, ctx)
+func (gc *generalRestClient) FetchConfiguration(ctx context.Context, url string) (string, error) {
+
+	body, err := clients.GetRequest(url+clients.ApiConfigRoute, ctx)
 	return string(body), err
 }
 
 // FetchMetrics fetch metrics information from the service.
-func (gc *generalRestClient) FetchMetrics(ctx context.Context) (string, error) {
-	body, err := clients.GetRequest(gc.url+clients.ApiMetricsRoute, ctx)
+func (gc *generalRestClient) FetchMetrics(ctx context.Context, url string) (string, error) {
+
+	body, err := clients.GetRequest(url+clients.ApiMetricsRoute, ctx)
 	return string(body), err
 }

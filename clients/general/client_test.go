@@ -62,7 +62,7 @@ func TestGetConfig(t *testing.T) {
 
 	mc := NewGeneralClient(params, mockGeneralEndpoint{})
 
-	responseJSON, err := mc.FetchConfiguration(context.Background())
+	responseJSON, err := mc.FetchConfiguration(context.Background(), url)
 	if err != nil {
 		t.Errorf("Fetched this for its configuration: {%v}", responseJSON)
 	}
@@ -95,7 +95,7 @@ func TestGetMetrics(t *testing.T) {
 
 	mc := NewGeneralClient(params, mockGeneralEndpoint{})
 
-	responseJSON, err := mc.FetchMetrics(context.Background())
+	responseJSON, err := mc.FetchMetrics(context.Background(), url)
 	if err != nil {
 		t.Errorf("Fetched this for its configuration: {%v}", responseJSON)
 	}
